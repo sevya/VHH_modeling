@@ -1,0 +1,9 @@
+-in:file:fullatom
+-out:file:fullatom
+-out:pdb_gz
+-ex1
+-use_input_sc
+-nstruct 10
+-suffix _relax_iface
+-scorefile relax_iface.fasc
+-out:path:pdb models/

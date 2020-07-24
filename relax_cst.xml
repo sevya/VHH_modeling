@@ -1,0 +1,32 @@
+<ROSETTASCRIPTS>
+	<SCOREFXNS>
+		<ScoreFunction name="ref_cst" weights="ref2015_cst.wts" />
+		<ScoreFunction name="ref" weights="ref2015.wts" />
+	</SCOREFXNS>
+	<FILTERS>
+	</FILTERS>
+	<TASKOPERATIONS>
+		<InitializeFromCommandline name="ifcl"/>
+		<RestrictToRepacking name="rtr"/>
+		<RestrictToInterfaceVector name="rtiv" chain1_num="1" chain2_num="2" CB_dist_cutoff="10.0" nearby_atom_cutoff="5.5" vector_angle_cutoff="75" vector_dist_cutoff="9.0" />
+	</TASKOPERATIONS>
+	<MOVERS>
+		<PackRotamersMover name="repack" task_operations="ifcl,rtr" scorefxn="ref" />
+		<FastRelax name="relax" task_operations="ifcl,rtr,rtiv" scorefxn="ref_cst" >
+			<MoveMap name="mm" >
+				<Jump number="1" setting="0" />
+			</MoveMap>
+		</FastRelax>
+		<AtomCoordinateCstMover name="cst" />
+		<VirtualRoot name="root" removable="1" />
+		<VirtualRoot name="rmroot" remove="1" />
+	</MOVERS>
+	<PROTOCOLS>
+		<Add mover_name="repack" />
+		<Add mover_name="root" />
+		<Add mover_name="cst" />
+		<Add mover_name="relax"/>
+		<Add mover_name="rmroot" />
+	</PROTOCOLS>
+	<OUTPUT scorefxn="ref" />
+</ROSETTASCRIPTS>

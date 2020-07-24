@@ -1,0 +1,1 @@
+rosetta_scripts.default.linuxgccrelease @relax.options -s 1bzq_HA.pdb -parser:protocol relax_cst.xml

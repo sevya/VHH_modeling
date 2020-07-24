@@ -1,0 +1,20 @@
+<ROSETTASCRIPTS>
+	<SCOREFXNS>
+		<ScoreFunction name="ref_cst" weights="ref2015_cst.wts" />
+		<ScoreFunction name="ref" weights="ref2015.wts" />
+	</SCOREFXNS>
+	<FILTERS>
+	</FILTERS>
+	<TASKOPERATIONS>
+		<InitializeFromCommandline name="ifcl"/>
+		<RestrictToRepacking name="rtr"/>
+		<RestrictToInterfaceVector name="rtiv" chain1_num="1" chain2_num="2" CB_dist_cutoff="10.0" nearby_atom_cutoff="5.5" vector_angle_cutoff="75" vector_dist_cutoff="9.0" />
+	</TASKOPERATIONS>
+	<MOVERS>
+		<ddG name="ddg" per_residue_ddg="1" repack_unbound="1" chain_num="1" task_operations="rtiv,ifcl,rtr" scorefxn="ref" />
+	</MOVERS>
+	<PROTOCOLS>
+		<Add mover_name="ddg" />
+	</PROTOCOLS>
+	<OUTPUT scorefxn="ref" />
+</ROSETTASCRIPTS>

@@ -1,0 +1,8 @@
+-in:file:fullatom
+-out:file:fullatom
+-out:pdb_gz
+-ex1
+-use_input_sc
+-nstruct 1
+-out:file:score_only
+-out:no_nstruct_label

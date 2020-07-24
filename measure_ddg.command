@@ -1,0 +1,1 @@
+rosetta_scripts.mpi.linuxgccrelease @measure_ddg.options -l best_decoys.list -scorefile ddg.fasc -parser:protocol measure_ddg.xml
