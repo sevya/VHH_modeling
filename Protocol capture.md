@@ -1,4 +1,4 @@
-# Protocol capture
+# Supplemental Appendix: Protocol capture
 ## Introduction
 
 The following is a protocol capture of the analysis of VHH structures from the publication *Structure- and sequence-based design of synthetic single-domain antibody libraries*, from Sevy et al., PEDS 2020. It will review the Rosetta protocols used for VHH analysis. All Rosetta commands for this publication were run with version 3.8, from December 2017. All materials from this protocol capture can be downloaded from
@@ -12,20 +12,21 @@ Structures were prepared using a constrained FastRelax refinement protocol, usin
 
 relax.command:
 
-`rosetta_scripts.default.linuxgccrelease @relax.options -s 1bzq_HA.pdb -parser:protocol relax_cst.xml`
+	rosetta_scripts.default.linuxgccrelease @relax.options \ 
+	-s 1bzq_HA.pdb -parser:protocol relax_cst.xml
 
 relax.options:
 
-`-in:file:fullatom
--out:file:fullatom
--out:pdb_gz
--ex1
--use_input_sc
--nstruct 10
--suffix _relax_iface
--scorefile relax_iface.fasc
--out:path:pdb models/
-`
+	-in:file:fullatom
+	-out:file:fullatom
+	-out:pdb_gz
+	-ex1
+	-use_input_sc
+	-nstruct 10
+	-suffix _relax_iface
+	-scorefile relax_iface.fasc
+	-out:path:pdb models/
+
 
 relax_cst.xml:
 
@@ -68,19 +69,20 @@ To measure binding energy along the VHH-antigen interface, the following XML scr
 
 measure_ddg.command:
 
-`rosetta_scripts.mpi.linuxgccrelease @measure_ddg.options -l best_decoys.list -scorefile ddg.fasc -parser:protocol measure_ddg.xml`
+	rosetta_scripts.mpi.linuxgccrelease @measure_ddg.options \
+	-l best_decoys.list -scorefile ddg.fasc  \
+	-parser:protocol measure_ddg.xml
 
 measure_ddg.options:
 
-`-in:file:fullatom
--out:file:fullatom
--out:pdb_gz
--ex1
--use_input_sc
--nstruct 1
--out:file:score_only
--out:no_nstruct_label
-`
+	-in:file:fullatom
+	-out:file:fullatom
+	-out:pdb_gz
+	-ex1
+	-use_input_sc
+	-nstruct 1
+	-out:file:score_only
+	-out:no_nstruct_label
 
 measure_ddg.xml:
 
